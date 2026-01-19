@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "calc-sum-numba"
+version = "0.1.0"
+description = "PoC: calc_sum implemented with Numba JIT + on-disk cache"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy>=2.0",
+  "numba>=0.59",
+]
+
+[project.scripts]
+calc-sum-numba-bench = "calc_sum_numba.bench:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/calc_sum_numba"]

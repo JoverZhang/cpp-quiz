@@ -1,0 +1,19 @@
+[build-system]
+requires = [
+  "setuptools>=69",
+  "wheel",
+  "pybind11>=2.12",
+  "numpy>=2.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calc-sum-cpp"
+version = "0.1.0"
+description = "PoC: calc_sum implemented as a C++ (pybind11) extension"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["numpy>=2.0"]
+
+[project.scripts]
+calc-sum-cpp-bench = "calc_sum_cpp.bench:main"

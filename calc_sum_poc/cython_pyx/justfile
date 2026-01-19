@@ -1,0 +1,12 @@
+set dotenv-load := false
+
+build:
+  uv run python -m pip install -e .
+
+bench:
+  uv run calc-sum-cython-bench
+
+clean:
+  rm -rf build dist *.egg-info .pytest_cache .mypy_cache
+  rm -rf src/calc_sum_cython/*.so src/calc_sum_cython/*.pyd src/calc_sum_cython/*.dll
+  rm -rf src/calc_sum_cython/__pycache__

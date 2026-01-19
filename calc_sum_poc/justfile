@@ -1,0 +1,12 @@
+set dotenv-load := false
+
+# Run all three benchmarks (build native extensions first)
+bench-all:
+  cd cython_pyx && uv sync && just build && just bench
+  cd cpp_pybind && uv sync && just build && just bench
+  cd numba_jit && uv sync && just bench
+
+clean-all:
+  cd cython_pyx && just clean
+  cd cpp_pybind && just clean
+  cd numba_jit && just clean

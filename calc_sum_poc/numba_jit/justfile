@@ -1,0 +1,9 @@
+set dotenv-load := false
+
+bench:
+  # Cache is stored under .numba_cache inside this project by default
+  NUMBA_CACHE_DIR=.numba_cache uv run calc-sum-numba-bench
+
+clean:
+  rm -rf .numba_cache .pytest_cache .mypy_cache
+  rm -rf src/calc_sum_numba/__pycache__

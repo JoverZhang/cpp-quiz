@@ -1,0 +1,12 @@
+set dotenv-load := false
+
+build:
+  uv run python -m pip install -e .
+
+bench:
+  uv run calc-sum-cpp-bench
+
+clean:
+  rm -rf build dist *.egg-info .pytest_cache .mypy_cache
+  rm -rf src/calc_sum_cpp/*.so src/calc_sum_cpp/*.pyd src/calc_sum_cpp/*.dll
+  rm -rf src/calc_sum_cpp/__pycache__

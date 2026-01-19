@@ -1,0 +1,21 @@
+[build-system]
+requires = [
+  "setuptools>=69",
+  "wheel",
+  "Cython>=3.0",
+  "numpy>=2.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calc-sum-cython"
+version = "0.1.0"
+description = "PoC: calc_sum implemented as a Cython (.pyx) extension"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy>=2.0",
+]
+
+[project.scripts]
+calc-sum-cython-bench = "calc_sum_cython.bench:main"
