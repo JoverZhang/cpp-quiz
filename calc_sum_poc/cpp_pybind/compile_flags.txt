@@ -1,0 +1,4 @@
+-I/home/jover/.local/share/uv/python/cpython-3.12.12-linux-x86_64-gnu/include/python3.12
+-I/home/jover/Workspace/projects/jover/cpp-quiz/calc_sum_poc/cpp_pybind/.venv/lib/python3.12/site-packages/pybind11/include
+-I/home/jover/Workspace/projects/jover/cpp-quiz/calc_sum_poc/cpp_pybind/.venv/lib/python3.12/site-packages/numpy/_core/include
+-std=c++17
