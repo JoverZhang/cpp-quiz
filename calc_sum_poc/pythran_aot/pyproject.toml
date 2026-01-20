@@ -1,0 +1,22 @@
+[build-system]
+requires = [
+  "setuptools>=69",
+  "wheel",
+  "pythran>=0.16",
+  "numpy>=2.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "calc-sum-pythran"
+version = "0.1.0"
+description = "PoC: calc_sum implemented as a Pythran AOT extension"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy>=2.0",
+  "pythran>=0.16",
+]
+
+[project.scripts]
+calc-sum-pythran-bench = "calc_sum_pythran.bench:main"

@@ -1,0 +1,37 @@
+set dotenv-load := false
+
+CXX := `which clang++`
+
+SRC := "src"
+OUT := "output"
+
+IMPL_DIR := "calc_sum_pythran/impl"
+
+build-impl:
+  for f in {{SRC}}/{{IMPL_DIR}}/*.py; do \
+      uv run pythran "$f" -o "{{SRC}}/{{IMPL_DIR}}/$(basename "$f" .py).cpp" -O3 -vE; \
+  done
+
+  mkdir -p "{{OUT}}/{{IMPL_DIR}}"; \
+  for f in {{SRC}}/{{IMPL_DIR}}/*.cpp; do \
+      uv run pythran "$f" -o "{{OUT}}/{{IMPL_DIR}}/$(basename "$f" .cpp)$(uv run python3-config --extension-suffix)" -O3 -v; \
+  done
+  
+
+build: build-impl
+  PKG_DIR="calc_sum_pythran"; \
+  mkdir -p "{{OUT}}"; \
+  rsync -a \
+    --exclude 'impl/' \
+    {{SRC}}/$PKG_DIR/ \
+    "{{OUT}}/$PKG_DIR/";
+
+bench:
+  # PYTHONPATH="{{OUT}}" uv run python -m calc_sum_pythran.bench
+  PYTHONPATH="{{SRC}}" uv run python -m calc_sum_pythran.bench
+
+clean:
+  rm -rf build dist *.egg-info .pytest_cache .mypy_cache
+  find src/calc_sum_pythran -type d -name "__pycache__" -exec rm -rf {} +
+  rm -f src/calc_sum_pythran/impl/*.cpp
+  rm -rf output
